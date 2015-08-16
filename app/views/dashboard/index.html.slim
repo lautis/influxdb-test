@@ -1,1 +1,8 @@
+label for='origin'
+  'Select origin
+select#origin name='origin'
+  - @origins.each do |origins|
+    option value=origins.name
+      = origins.name
+
 #chart

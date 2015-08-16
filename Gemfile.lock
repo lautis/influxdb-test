@@ -103,6 +103,7 @@ GEM
     rails-assets-metrics-graphics (2.6.0)
       rails-assets-d3 (>= 3.4.8)
       rails-assets-jquery (>= 1.11.1)
+    rails-assets-select2 (4.0.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -187,6 +188,7 @@ DEPENDENCIES
   rails (= 4.2.2)
   rails-assets-fetch!
   rails-assets-metrics-graphics!
+  rails-assets-select2!
   rspec-rails
   sass-rails (~> 5.0)
   slim-rails

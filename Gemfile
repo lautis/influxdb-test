@@ -12,6 +12,7 @@ gem 'jquery-rails'
 source 'https://rails-assets.org' do
   gem 'rails-assets-metrics-graphics'
   gem 'rails-assets-fetch'
+  gem 'rails-assets-select2'
 end
 
 group :development, :test do

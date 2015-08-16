@@ -1,5 +1,6 @@
 class Ping < Influxer::Metrics
   set_series :pings
+  fanout :origin
 
   attributes :name_lookup_time_ms,
              :connect_time_ms,

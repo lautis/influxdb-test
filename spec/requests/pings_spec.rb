@@ -23,22 +23,24 @@ RSpec.describe 'Pings', type: :request do
       [ping(origin, 2.hours.ago), ping(origin, 1.hour.ago), ping(origin, Time.current)]
     end
 
-    before :each do
-      pings.each do |ping|
-        Ping.write(ping)
-      end
-      sleep 2 # Eventual consistency...
-    end
-
-    it 'returns pings by hour' do
-      get hours_ping_path(origin)
-      data = JSON.load(response.body)
-      expect(data).to eql(pings.reverse.map do |ping|
+    let(:data) do
+      pings.reverse.map do |ping|
         {
           'time' => Time.at(ping[:time]).beginning_of_hour.as_json,
           'mean_transfer_time_ms' => ping[:transfer_time_ms]
         }
-      end)
+      end
+    end
+
+    before :each do
+      Origin.find_or_create_by_name(origin)
+      expect_any_instance_of(Origin).to receive(:mean_transfer_times).and_return(data)
+    end
+
+    it 'returns pings by hour' do
+      get hours_ping_path(origin)
+      json = JSON.load(response.body)
+      expect(json).to eql(data)
     end
   end
 

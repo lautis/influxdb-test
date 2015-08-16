@@ -9,18 +9,15 @@ class PingsController < ApplicationController
   end
 
   def hours
-    pings = Ping.where(origin: params[:id].to_s).time(:hour).select('mean(transfer_time_ms)')
-    render json: pings.map(&method(:format_hourly_report)), root: false
+    origin = Origin.find_by(name: params[:id].to_s)
+    if origin
+      render json: origin.mean_transfer_times, root: false
+    else
+      render json: [], status: 404, root: false
+    end
   end
 
   private
-
-  def format_hourly_report(data)
-    {
-      time: Time.zone.at(data['time']),
-      mean_transfer_time_ms: data['mean']
-    }
-  end
 
   def ping_params
     params.permit(

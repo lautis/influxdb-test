@@ -8,6 +8,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
+gem 'autoprefixer-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-metrics-graphics'

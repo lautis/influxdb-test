@@ -10,7 +10,7 @@ function fetchOrigin(origin) {
 }
 
 function showOrigin(origin) {
-  fetchOrigin(origin).then(function(pings) {
+  return fetchOrigin(origin).then(function(pings) {
     MG.data_graphic({
       title: 'Mean Transfer Time for ' + origin,
       data: pings.map(function(ping) {
@@ -33,11 +33,23 @@ function showOrigin(origin) {
   });
 }
 
+function chartLoaded(spinner, element) {
+  return function() {
+    spinner.hide();
+    element.select2('enable', true);
+  }
+};
+
 $(function() {
-  showOrigin($('#origin').val());
+  var spinner = $('.spinner').show();
+  showOrigin($('#origin').val()).then(chartLoaded(spinner, $('#origin')));
   $('#origin').select2()
     .focus(function () { $(this).select2('open'); })
     .on('change', function() {
-      showOrigin($(this).val());
-    });
+      var element = $(this);
+      spinner.show();
+      element.select2('enable', false);
+      showOrigin(element.val()).then(chartLoaded(spinner, element));
+    })
+    .select2('enable', false);
 });

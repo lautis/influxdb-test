@@ -1,16 +1,32 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require d3
+//= require metrics-graphics
+//= require fetch
+
+function fetchOrigin(origin) {
+  return fetch('/api/1/pings/' + origin + '/hours')
+    .then(function(response) { return response.json()})
+}
+
+fetchOrigin('sdn-probe-austria').then(function(pings) {
+  MG.data_graphic({
+    title: 'Mean Transfer Time for sdn-probe-austria',
+    description: "This graphic shows a time-series of downloads.",
+    data: pings.map(function(ping) {
+      return {
+        time: new Date(ping['time']),
+        mean_transfer_time_ms: ping['mean_transfer_time_ms'],
+        label: ping['mean_transfer_time_ms'].toFixed(2) + ' ms'
+      }
+    }),
+    animate_on_load: true,
+    y_extended_ticks: false,
+    width: 600,
+    height: 250,
+    left: 75,
+    target: '#chart',
+    x_accessor: 'time',
+    y_accessor: 'mean_transfer_time_ms',
+    yax_format: function(ms) { return ms + ' ms'; }
+  });
+});

@@ -5,9 +5,14 @@ gem 'sqlite3'
 gem 'influxer'
 
 gem 'sass-rails', '~> 5.0'
+gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
-
 gem 'jquery-rails'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-metrics-graphics'
+  gem 'rails-assets-fetch'
+end
 
 group :development, :test do
   gem 'pry-rails'

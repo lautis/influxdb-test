@@ -17,7 +17,7 @@ class PingsController < ApplicationController
 
   def format_hourly_report(data)
     {
-      time: Time.at(data['time']),
+      time: Time.zone.at(data['time']),
       mean_transfer_time_ms: data['mean']
     }
   end

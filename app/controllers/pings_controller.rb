@@ -1,6 +1,6 @@
 class PingsController < ApplicationController
   def create
-    ping = Ping.write(ping_params)
+    ping = Origin.find_or_create_by_name(params[:origin]).pings.write(ping_params)
     if ping.persisted?
       render status: :created, json: ping
     else
@@ -28,7 +28,6 @@ class PingsController < ApplicationController
       :connect_time_ms,
       :transfer_time_ms,
       :total_time_ms,
-      :origin,
       :status
     )
   end

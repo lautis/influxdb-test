@@ -1,7 +1,7 @@
 pings = JSON.load(File.open(Rails.root.join('pings.json')))
 
 pings.each do |ping|
-  Ping.write(
+  Origin.find_or_create_by_name(ping['origin']).pings.write(
     origin: ping['origin'],
     name_lookup_time_ms: ping['name_lookup_time_ms'],
     connect_time_ms: ping['name_lookup_time_ms'],

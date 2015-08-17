@@ -1,3 +1,32 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
 @import 'metrics-graphics';
 @import 'select2';
+@import 'select2-bootstrap-theme';
 @import 'spinner';
+
+#chart {
+  text-align: center;
+
+  svg {
+    margin-left: -75px;
+  }
+}
+
+#origin {
+  text-align: center;
+  margin: 1em;
+
+  span {
+    text-align: left;
+  }
+}
+
+#origin-label {
+  padding-right: 0.5em;
+}
+
+#origin-spinner {
+  @extend .spinner;
+  margin: 0 2em;
+}

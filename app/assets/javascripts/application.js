@@ -2,6 +2,7 @@
 //= require d3
 //= require metrics-graphics
 //= require fetch
+//= require bootstrap-sprockets
 //= require select2
 
 function fetchOrigin(origin) {
@@ -35,19 +36,19 @@ function showOrigin(origin) {
 
 function chartLoaded(spinner, element) {
   return function() {
-    spinner.hide();
+    spinner.addClass('pause');
     element.select2('enable', true);
   }
 };
 
 $(function() {
-  var spinner = $('.spinner').show();
-  showOrigin($('#origin').val()).then(chartLoaded(spinner, $('#origin')));
-  $('#origin').select2()
+  var spinner = $('#origin-spinner').removeClass('pause');
+  showOrigin($('#origin-select').val()).then(chartLoaded(spinner, $('#origin-select')));
+  $('#origin-select').select2()
     .focus(function () { $(this).select2('open'); })
     .on('change', function() {
       var element = $(this);
-      spinner.show();
+      spinner.removeClass('pause');
       element.select2('enable', false);
       showOrigin(element.val()).then(chartLoaded(spinner, element));
     })

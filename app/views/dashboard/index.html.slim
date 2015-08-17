@@ -1,10 +1,11 @@
-label for='origin'
-  'Select origin
-select#origin name='origin'
-  - @origins.each do |origins|
-    option value=origins.name
-      = origins.name
-.spinner
+#origin
+  label#origin-label for='origin'
+    'Origin
+  select#origin-select name='origin'
+    - @origins.each do |origins|
+      option value=origins.name
+        = origins.name
+  #origin-spinner.pause
 
 
 #chart

@@ -9,11 +9,13 @@ gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'autoprefixer-rails'
+gem 'bootstrap-sass'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-metrics-graphics'
   gem 'rails-assets-fetch'
   gem 'rails-assets-select2'
+  gem 'rails-assets-select2-bootstrap-theme'
 end
 
 group :development, :test do

@@ -45,6 +45,9 @@ GEM
       json
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.5)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
@@ -107,6 +110,7 @@ GEM
       rails-assets-d3 (>= 3.4.8)
       rails-assets-jquery (>= 1.11.1)
     rails-assets-select2 (4.0.0)
+    rails-assets-select2-bootstrap-theme (0.1.0.beta.4)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -185,6 +189,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  bootstrap-sass
   byebug
   influxer
   jquery-rails
@@ -193,6 +198,7 @@ DEPENDENCIES
   rails-assets-fetch!
   rails-assets-metrics-graphics!
   rails-assets-select2!
+  rails-assets-select2-bootstrap-theme!
   rspec-rails
   sass-rails (~> 5.0)
   slim-rails

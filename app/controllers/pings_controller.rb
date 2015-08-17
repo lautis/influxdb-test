@@ -1,4 +1,6 @@
 class PingsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: :create
+
   def create
     ping = Origin.find_or_create_by_name(params[:origin]).pings.write(ping_params)
     if ping.persisted?
